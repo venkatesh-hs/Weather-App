@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h1>The weather App</h1>
+<form th:action="@{/getCityData}" method="get">
+    <div class="container">
+        <label><b>City</b></label>
+        <input type="text" placeholder="City" name="uname" required>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+</body>
+</html>
