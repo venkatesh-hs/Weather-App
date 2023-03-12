@@ -44,7 +44,7 @@ public class WeatherServiceImpl implements WeatherService {
         client = new OkHttpClient();
         Map<String, Double> coordinates;
         Request request = new Request.Builder()
-                .url("http://api.openweathermap.org/geo/1.0/direct?q=" + WeatherConstants.CITY + "&limit=1&appid=" + WeatherConstants.API_KEY)
+                .url("http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + WeatherConstants.API_KEY)
                 .build();
         try {
             response = client.newCall(request).execute();
