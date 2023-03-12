@@ -25,6 +25,10 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// https://mvnrepository.com/artifact/com.squareup.okhttp/okhttp
+	implementation 'com.squareup.okhttp:okhttp:2.7.5'
+	// https://mvnrepository.com/artifact/org.json/json
+	implementation 'org.json:json:20230227'
 }
 
 tasks.named('test') {
