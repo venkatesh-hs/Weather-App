@@ -1,8 +1,12 @@
 package com.revival.weatherApp.controller;
 
+import com.revival.weatherApp.constants.WeatherConstants;
+import com.revival.weatherApp.impl.WeatherUtils;
+import com.revival.weatherApp.model.WeatherModel;
 import com.revival.weatherApp.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,8 +20,10 @@ public class WeatherController {
     private WeatherService weatherService;
 
     @PostMapping("/getWeather")
-    public String getWeatherData(@RequestParam(value = "city") String city, @RequestParam(value = "units", required = false) String unit) throws IOException {
-        weatherService.getWeatherData(city, unit);
+    public String getWeatherData(Model model, @RequestParam(value = "city") String city, @RequestParam(value = "units", required = false) String unit) throws IOException {
+        WeatherModel weatherModel = weatherService.getWeatherData(WeatherUtils.trimOffComma(city),
+                unit == null || unit.isEmpty() ? WeatherConstants.CELSIUS : WeatherUtils.trimOffComma(unit));
+        model.addAttribute("data", weatherModel);
         return "displayWeather";
     }
 
