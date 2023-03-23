@@ -23,13 +23,13 @@ public class WeatherController {
     public String getWeatherData(Model model, @RequestParam(value = "city") String city, @RequestParam(value = "units", required = false) String unit) throws IOException {
         WeatherModel weatherModel = weatherService.getWeatherData(WeatherUtils.trimOffComma(city),
                 unit == null || unit.isEmpty() ? WeatherConstants.CELSIUS : WeatherUtils.trimOffComma(unit));
-        model.addAttribute("data", weatherModel);
-        return "displayWeather";
+        model.addAttribute(WeatherConstants.DATA, weatherModel);
+        return WeatherConstants.Templates.DISPLAY_WEATHER;
     }
 
     @GetMapping("/")
     public String homePage() {
-        return "home";
+        return WeatherConstants.Templates.HOME;
     }
 
 }

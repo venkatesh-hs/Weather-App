@@ -26,7 +26,8 @@ public class WeatherServiceImpl implements WeatherService {
         client = new OkHttpClient();
         Map<String, BigDecimal> coordinates = getGeoCoordinates(city);
         Request request = new Request.Builder()
-                .url("https://api.openweathermap.org/data/2.5/weather?lat=" + coordinates.get(WeatherConstants.LATITUDE) + "&lon=" + coordinates.get(WeatherConstants.LONGITUDE) + "&appid=" + WeatherConstants.API_KEY)
+                .url("https://api.openweathermap.org/data/2.5/weather?lat=" + coordinates.get(WeatherConstants.LATITUDE) + "&lon=" + coordinates.get(WeatherConstants.LONGITUDE) + "&appid=" + WeatherConstants.API_KEY + "&units="
+                        + (WeatherConstants.CELSIUS.equals(unit) || unit.isEmpty() ? WeatherConstants.Units.METRIC : WeatherConstants.Units.IMPERIAL))
                 .build();
         try {
             response = client.newCall(request).execute();
